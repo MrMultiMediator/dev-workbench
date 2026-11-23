@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Development Workbench</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2939;
+      --muted: #526174;
+      --paper: #f5f7fb;
+      --card: #fff;
+      --line: #dce3ed;
+      --accent: #315f9b;
+      --accent-soft: #eaf1fb;
+      --code: #172433;
+      --code-ink: #e5edf7;
+      --shadow: 0 14px 36px rgb(34 53 79 / 8%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --ink: #e7edf5;
+        --muted: #aab8ca;
+        --paper: #111923;
+        --card: #192432;
+        --line: #2b3a4d;
+        --accent: #9dc2f4;
+        --accent-soft: #22354c;
+        --code: #0c131c;
+        --code-ink: #e5edf7;
+        --shadow: 0 14px 36px rgb(0 0 0 / 20%);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 12% 0%, var(--accent-soft), transparent 34rem),
+        var(--paper);
+      color: var(--ink);
+      font: 16px/1.7 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    main { width: min(920px, calc(100% - 36px)); margin: 52px auto 80px; }
+    header {
+      padding: clamp(28px, 6vw, 58px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 10px 0 14px; font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1.1; letter-spacing: -.045em; }
+    h2 { margin: 0 0 14px; font-size: 1.42rem; letter-spacing: -.02em; }
+    h3 { margin: 24px 0 8px; font-size: 1rem; }
+    p { margin: 10px 0 16px; }
+    .lead { max-width: 720px; color: var(--muted); font-size: 1.1rem; }
+    .pill {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 650;
+    }
+    section {
+      margin-top: 22px;
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .tile { padding: 16px; border: 1px solid var(--line); border-radius: 14px; }
+    .tile strong { display: block; margin-bottom: 4px; }
+    .tile span { color: var(--muted); font-size: .94rem; }
+    code {
+      padding: .12em .38em;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--accent-soft);
+      font: .9em ui-monospace, SFMono-Regular, Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+    pre {
+      overflow-x: auto;
+      margin: 12px 0 18px;
+      padding: 16px 18px;
+      border: 1px solid #29394c;
+      border-radius: 12px;
+      background: var(--code);
+      color: var(--code-ink);
+      font: .9rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    pre code { padding: 0; border: 0; background: none; color: inherit; }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin: 5px 0; }
+    .callout {
+      margin: 16px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--accent-soft);
+    }
+    .muted { color: var(--muted); }
+    footer { padding: 26px 8px; color: var(--muted); text-align: center; font-size: .9rem; }
+    @media (max-width: 560px) {
+      main { width: min(100% - 22px, 920px); margin-top: 12px; }
+      header, section { border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">A small, reviewable Linux setup</div>
+    <h1>Development Workbench</h1>
+    <p class="lead">A portable collection of development environment configuration and tools for machines you work on—from a workstation or frequently replaced laptop to a remote cloud instance.</p>
+    <span class="pill">Ubuntu / Debian</span>
+    <span class="pill">Bash + Vim</span>
+    <span class="pill">Backups before replacement</span>
+    <p class="muted">Also available as <a href="README.md">Markdown</a>.</p>
+  </header>
+
+  <section>
+    <h2>What’s included</h2>
+    <div class="grid">
+      <div class="tile"><strong><code>.bashrc</code></strong><span>Interactive shell defaults, aliases, completion, and optional Cargo environment loading.</span></div>
+      <div class="tile"><strong><code>.vimrc</code></strong><span>Vim editing preferences.</span></div>
+      <div class="tile"><strong><code>.vim/colors/gruvbox.vim</code></strong><span>Gruvbox color scheme selected by the Vim config.</span></div>
+      <div class="tile"><strong><code>setup.sh</code></strong><span>Copy dotfiles and/or install micromamba, stable Rust, <code>gh</code>, and Docker.</span></div>
+      <div class="tile"><strong><code>Dockerfile</code></strong><span>A disposable Ubuntu environment for testing the setup or working in an isolated agent container.</span></div>
+      <div class="tile"><strong><code>LICENSE</code></strong><span>MIT license for this repository.</span></div>
+      <div class="tile"><strong><code>THIRD_PARTY_NOTICES.md</code></strong><span>MIT/X11 notice for the bundled Gruvbox theme.</span></div>
+    </div>
+    <p class="muted">This repository is licensed under MIT; see <code>LICENSE</code>. The bundled Gruvbox theme retains its upstream attribution and license, documented in <a href="THIRD_PARTY_NOTICES.md">the third-party notice</a>.</p>
+  </section>
+
+  <section>
+    <h2>Quick start</h2>
+    <p>From a clone of this repository, run:</p>
+    <pre><code>./setup.sh</code></pre>
+    <p>With no options, the script copies <code>.bashrc</code>, <code>.vimrc</code>, and the Gruvbox theme; backs up any files it will replace; installs micromamba, the stable Rust toolchain (<code>rustc</code> and Cargo) via rustup, GitHub CLI (<code>gh</code>), Docker Engine, the Docker CLI, Buildx, and the Compose plugin; initializes micromamba for Bash; then prints Docker build/run/exec commands for the agent container and copies them to the clipboard when supported.</p>
+    <p class="muted">The installer supports Ubuntu and Debian only. It needs network access, <code>apt</code>, and root privileges or <code>sudo</code>. Package installation may prompt for your sudo password. Rust and micromamba are installed for the current user; only system packages use <code>sudo</code>.</p>
+    <h3>Choose what to run</h3>
+    <pre><code>./setup.sh --copy-only</code></pre>
+    <p>Copy dotfiles without installing packages.</p>
+    <pre><code>./setup.sh --setup-only</code></pre>
+    <p>Install and initialize the tools without copying repository dotfiles. Micromamba initialization still updates the current user’s <code>~/.bashrc</code>.</p>
+    <pre><code>./setup.sh --no-backup</code></pre>
+    <p>Run the default copy-and-setup flow, but replace destination files without backing them up. This flag can also be combined with <code>--copy-only</code>; it has no effect with <code>--setup-only</code>.</p>
+    <pre><code>./setup.sh --sv /workspace/mirror "$HOME/path/to/my/dir"</code></pre>
+    <p>Run the default flow and print Docker commands that bind-mount the host directory at <code>/workspace/mirror</code> in the agent container. The generated commands create the host directory if it does not exist. Only that directory is shared; writes and deletions there affect the host. Ensure it is writable by the container’s <code>dotfiles</code> user. This prints commands without launching Docker; mounts must be specified when a new container is created.</p>
+    <pre><code>./setup.sh --help</code></pre>
+    <p>Show all options. <code>--copy-only</code> and <code>--setup-only</code> cannot be used together. <code>--sv</code> accepts an absolute container path and a host directory; paths cannot contain commas or newlines.</p>
+  </section>
+
+  <section>
+    <h2>Backups &amp; safety</h2>
+    <p>By default, before replacing a destination file, the script saves it under a unique, timestamped directory in:</p>
+    <pre><code>~/.dotfiles-backups/</code></pre>
+    <p>For example, an existing <code>.bashrc</code> is preserved at <code>~/.dotfiles-backups/&lt;timestamp&gt;.&lt;unique-suffix&gt;/.bashrc</code>. The script prints the exact backup directory. If no destination files exist, it creates no backup directory. Existing unrelated Vim files and plugin directories are left alone; only the tracked Gruvbox theme is copied.</p>
+    <p>Use <code>--no-backup</code> to skip this step entirely. Existing files are then replaced without a recovery copy.</p>
+    <p>The installer adds the official GitHub CLI and Docker package repositories, installs micromamba from its official download endpoint and Rust via the official rustup installer, and reports errors rather than silently continuing. Rustup selects the stable toolchain, providing <code>rustc</code> and Cargo in <code>~/.cargo/bin</code>. The installer does not remove conflicting pre-installed Docker packages; if it detects any, it stops and asks you to remove them manually. It also does not add your account to the <code>docker</code> group: membership grants root-equivalent privileges. Use <code>sudo docker ...</code> unless you have deliberately chosen to grant that access.</p>
+  </section>
+
+  <section>
+    <h2>Try it in a disposable Ubuntu container</h2>
+    <p>The included Dockerfile creates an Ubuntu 24.04 container with Vim and Copilot CLI installed, plus a regular user with passwordless <code>sudo</code> for package setup. To print Docker host commands without installing packages on the host, run:</p>
+    <pre><code>./setup.sh --copy-only</code></pre>
+    <p>Run the printed commands on the Docker host. The script also copies them to the clipboard when supported. To create a container with a shared directory, pass <code>--sv</code>:</p>
+    <pre><code>./setup.sh --copy-only --sv /workspace/mirror "$HOME/path/to/my/dir"</code></pre>
+    <p>Then run the generated Docker commands on the host. The image has no SSH server and does not run a Docker daemon; starting one would require a separate privileged Docker-in-Docker configuration and is intentionally out of scope. The mounted directory is the only host directory shared with the container, but the agent can change or delete its contents.</p>
+    <p>Authenticate Copilot from inside the container with <code>copilot</code> and <code>/login</code>. Authentication is not performed during image build.</p>
+    <p>When finished, leave the shell and remove the container:</p>
+    <pre><code>exit
+docker rm -f dotfiles-agent</code></pre>
+    <p>To verify Vim inside the container, run <code>vim</code>, then enter <code>:echo g:colors_name</code>. It should print <code>gruvbox</code>. If you previously built the container, rerun the generated <code>docker build</code> command (optionally with <code>--no-cache</code>) and recreate it.</p>
+  </section>
+
+  <section>
+    <h2>After setup</h2>
+    <p>Start a new Bash session (or run <code>source ~/.bashrc</code>) to load the copied settings and micromamba hook. Open Vim and confirm that Gruvbox loads:</p>
+    <pre><code>vim</code></pre>
+    <p>On a regular Ubuntu/Debian host, Docker’s package scripts generally start the service when systemd is available. If needed, start it with <code>sudo systemctl enable --now docker</code>. The daemon will not start in the included test container. Manage Vim plugins separately; this repository tracks only the current color scheme and Vim settings.</p>
+    <p>Verify the Rust toolchain with <code>rustc --version</code> and <code>cargo --version</code>.</p>
+  </section>
+  <footer>Plain-text configs. Explicit setup modes. Backups before replacement.</footer>
+</main>
+</body>
+</html>
